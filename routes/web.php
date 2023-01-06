@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\HomeAdvertisementController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
 // ---------------------------  Frontend  ------------------------
@@ -33,3 +34,7 @@ Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.da
 //Admin Profile
 Route::get('/admin/profile', [ProfileController::class, 'edit_profile'])->name('admin.profile');
 Route::post('/admin/profile-submit', [ProfileController::class, 'edit_profile_submit'])->name('admin.profile.submit');
+
+//Advertisements
+Route::get('/admin/home-ad', [HomeAdvertisementController::class, 'home_ad'])->name('admin.home-ad');
+Route::post('/admin/home-ad/submit', [HomeAdvertisementController::class, 'ad_submit'])->name('admin.home-ad.submit');
