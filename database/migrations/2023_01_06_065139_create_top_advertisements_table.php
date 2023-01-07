@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('home_advertisements', function (Blueprint $table) {
+        Schema::create('top_advertisements', function (Blueprint $table) {
             $table->id();
-            $table->string('above_search_ad');
-            $table->string('above_search_ad_url')->nullable();
-            $table->string('above_search_ad_status');
-            $table->string('above_footer_ad');
-            $table->string('above_footer_ad_url')->nullable();
-            $table->string('above_footer_ad_status');
+            $table->string('top_ad');
+            $table->string('top_ad_url')->nullable();
+            $table->string('top_ad_status');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('home_advertisements');
+        Schema::dropIfExists('top_advertisements');
     }
 };

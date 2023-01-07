@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
@@ -36,5 +37,11 @@ Route::get('/admin/profile', [ProfileController::class, 'edit_profile'])->name('
 Route::post('/admin/profile-submit', [ProfileController::class, 'edit_profile_submit'])->name('admin.profile.submit');
 
 //Advertisements
+
+//home ad
 Route::get('/admin/home-ad', [HomeAdvertisementController::class, 'home_ad'])->name('admin.home-ad');
 Route::post('/admin/home-ad/submit', [HomeAdvertisementController::class, 'ad_submit'])->name('admin.home-ad.submit');
+
+//Top ad
+Route::get('/admin/top-ad', [TopAdController::class, 'top_ad'])->name('admin.top-ad');
+Route::post('/admin/top-ad/submit', [TopAdController::class, 'ad_submit'])->name('admin.top-ad.submit');

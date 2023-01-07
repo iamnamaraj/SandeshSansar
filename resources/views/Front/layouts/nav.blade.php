@@ -38,11 +38,21 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="ad-section-1">
-                    <a href=""><img src="uploads/ad-1.png" alt=""></a>
+
+            @if ($global_top_ad_data->top_ad_status == 'Show')
+                <div class="col-md-8">
+                    <div class="ad-section-1">
+                        @if ($global_top_ad_data->top_ad__url == '')
+                            <a href=""><img src="{{ asset('uploads/'.$global_top_ad_data->top_ad) }}" alt=""></a>
+
+                        @else
+                        <a href="{{ $global_top_ad_data->top_ad__url }}"><img src="{{ asset('uploads/'.$global_top_ad_data->top_ad) }}" alt=""></a>
+
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endif
+
         </div>
     </div>
 </div>
