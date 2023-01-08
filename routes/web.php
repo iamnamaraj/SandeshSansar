@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
-
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
@@ -54,4 +54,11 @@ Route::post('/admin/sidebar-ad/store', [SidebarAdController::class, 'store'])->n
 Route::get('/admin/sidebar-ad/edit/{id}', [SidebarAdController::class, 'edit'])->name('admin.sidebar-ad.edit');
 Route::post('/admin/sidebar-ad/update/{id}', [SidebarAdController::class, 'update'])->name('admin.sidebar-ad.update');
 Route::get('/admin/sidebar-ad/delete/{id}', [SidebarAdController::class, 'delete'])->name('admin.sidebar-ad.delete');
-// Route::post('/admin/top-ad/submit', [TopAdController::class, 'ad_submit'])->name('admin.top-ad.submit');
+
+//Category
+Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories');
+Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+Route::post('/admin/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
+Route::get('/admin/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+Route::post('/admin/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
+Route::get('/admin/categories/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
