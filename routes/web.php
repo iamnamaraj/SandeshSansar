@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
@@ -45,3 +46,12 @@ Route::post('/admin/home-ad/submit', [HomeAdvertisementController::class, 'ad_su
 //Top ad
 Route::get('/admin/top-ad', [TopAdController::class, 'top_ad'])->name('admin.top-ad');
 Route::post('/admin/top-ad/submit', [TopAdController::class, 'ad_submit'])->name('admin.top-ad.submit');
+
+//Sidebar Ad
+Route::get('/admin/sidebar-ad', [SidebarAdController::class, 'index'])->name('admin.sidebar-ad');
+Route::get('/admin/sidebar-ad/create', [SidebarAdController::class, 'create'])->name('admin.sidebar-ad.create');
+Route::post('/admin/sidebar-ad/store', [SidebarAdController::class, 'store'])->name('admin.sidebar-ad.store');
+Route::get('/admin/sidebar-ad/edit/{id}', [SidebarAdController::class, 'edit'])->name('admin.sidebar-ad.edit');
+Route::post('/admin/sidebar-ad/update/{id}', [SidebarAdController::class, 'update'])->name('admin.sidebar-ad.update');
+Route::get('/admin/sidebar-ad/delete/{id}', [SidebarAdController::class, 'delete'])->name('admin.sidebar-ad.delete');
+// Route::post('/admin/top-ad/submit', [TopAdController::class, 'ad_submit'])->name('admin.top-ad.submit');

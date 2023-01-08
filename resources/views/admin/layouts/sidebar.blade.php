@@ -16,7 +16,7 @@
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link" href="{{ route('admin.top-ad') }}"><i class="fas fa-angle-right"></i>Top advertisement</a></li>
                     <li class=""><a class="nav-link" href="{{ route('admin.home-ad') }}"><i class="fas fa-angle-right"></i>Home advertisement</a></li>
-                    {{-- <li class=""><a class="nav-link" href="{{ route('footer_advertisement') }}"><i class="fas fa-angle-right"></i>Footer advertisement</a></li> --}}
+                    <li class=""><a class="nav-link" href="{{ route('admin.sidebar-ad') }}"><i class="fas fa-angle-right"></i>Sidebar advertisement</a></li>
                 </ul>
             </li>
 
