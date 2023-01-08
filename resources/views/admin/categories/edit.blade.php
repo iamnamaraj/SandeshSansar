@@ -18,14 +18,13 @@
                     <div class="card">
                         <div class="card-body">
 
-
                             <div class="form-group mb-3">
                                 <label>Name *</label>
                                 <input type="text" class="form-control" name="name" value="{{ $category->name }}">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label>Staus *</label>
+                                <label>Status *</label>
                                 <select name="status" class="form-control">
                                     <option value="Show" @if ($category->status == 'Show') selected @endif>Show</option>
                                     <option value="Hide" @if ($category->status == 'Hide') selected @endif>Hide</option>

@@ -2,12 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SidebarAdController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
@@ -62,3 +63,12 @@ Route::post('/admin/categories/store', [CategoryController::class, 'store'])->na
 Route::get('/admin/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
 Route::post('/admin/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
 Route::get('/admin/categories/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
+
+
+//sub category
+Route::get('/admin/sub-categories', [SubCategoryController::class, 'index'])->name('admin.sub-categories');
+Route::get('/admin/sub-categories/create', [SubCategoryController::class, 'create'])->name('admin.sub-categories.create');
+Route::post('/admin/sub-categories/store', [SubCategoryController::class, 'store'])->name('admin.sub-categories.store');
+Route::get('/admin/sub-categories/edit/{id}', [SubCategoryController::class, 'edit'])->name('admin.sub-categories.edit');
+Route::post('/admin/sub-categories/update/{id}', [SubCategoryController::class, 'update'])->name('admin.sub-categories.update');
+Route::get('/admin/sub-categories/delete/{id}', [SubCategoryController::class, 'delete'])->name('admin.sub-categories.delete');
