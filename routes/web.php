@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
 // ---------------------------  Frontend  ------------------------
@@ -72,3 +74,14 @@ Route::post('/admin/sub-categories/store', [SubCategoryController::class, 'store
 Route::get('/admin/sub-categories/edit/{id}', [SubCategoryController::class, 'edit'])->name('admin.sub-categories.edit');
 Route::post('/admin/sub-categories/update/{id}', [SubCategoryController::class, 'update'])->name('admin.sub-categories.update');
 Route::get('/admin/sub-categories/delete/{id}', [SubCategoryController::class, 'delete'])->name('admin.sub-categories.delete');
+
+//Post Controller
+Route::resource('admin/posts', PostController::class);
+Route::get('admin/posts/delete/{id}', [PostController::class, 'delete'])->name('posts.delete');
+Route::get('admin/posts/tag/{id}/{id1}', [PostController::class, 'tag_delete'])->name('posts.tag.delete');
+
+
+//settings
+
+Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings');
+Route::post('/admin/settings/update', [SettingController::class, 'update'])->name('admin.settings.update');
