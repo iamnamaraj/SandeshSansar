@@ -1,4 +1,4 @@
-@extends('Front.layouts.app')
+@extends('front.layouts.app')
 
 @section('main_content')
 <div class="page-top">

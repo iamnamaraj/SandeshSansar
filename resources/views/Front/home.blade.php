@@ -1,4 +1,4 @@
-@extends('Front.layouts.app')
+@extends('front.layouts.app')
 
 @section('main_content')
 
@@ -19,7 +19,7 @@
                                 @if ($i>$settings->news_ticker_total)
                                     @break
                                 @endif
-                                <li><a href="">{{ $post->title }}</a></li>
+                                <li><a href="{{ route('front.post.view', $post->id) }}">{{ $post->title }}</a></li>
 
                             @endforeach
 

@@ -13,11 +13,16 @@ use App\Http\Controllers\Admin\HomeAdvertisementController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
+use App\Http\Controllers\Front\PostController as FrontPostController;
 
 // ---------------------------  Frontend  ------------------------
 
 Route::get('/', [FrontHomeController::class, 'home'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+//post
+
+Route::get('/posts/{id}', [FrontPostController::class, 'view'])->name('front.post.view');
 
 
 // --------------------- Backend ------------------------------
