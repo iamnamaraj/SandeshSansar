@@ -19,7 +19,8 @@
                                     <th>SL</th>
                                     <th>Name</th>
                                     <th>Parent Category</th>
-                                    <th>Status</th>
+                                    <th>Show on menu</th>
+                                    <th>Show on home</th>
                                     <th>Order</th>
                                     <th>Action</th>
                                 </tr>
@@ -35,6 +36,7 @@
                                             {{ $category->rCategory->name}}
                                         </td>
                                         <td>{{ $category->status }}</td>
+                                        <td>{{ $category->show_on_home }}</td>
                                         <td>{{ $category->order }}</td>
                                         <td class="pt_10 pb_10">
                                             <a href="{{ route('admin.sub-categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>

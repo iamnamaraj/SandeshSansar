@@ -589,6 +589,13 @@ a:hover {
 .home-content .left .news-total-item .left-side .date-user .date:before {
 	content: "\f073";
 }
+.home-content .left .news-total-item .left-side .post-short-text {
+	display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 
 .home-content .left .news-total-item .right-side-item {
 	margin-bottom: 0px;

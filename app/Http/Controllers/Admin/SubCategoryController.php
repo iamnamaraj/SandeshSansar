@@ -34,6 +34,7 @@ class SubCategoryController extends Controller
         $category->name = $request->name;
         $category->category_id = $request->category_id;
         $category->status = $request->status;
+        $category->show_on_home = $request->show_on_home;
         $category->order = $request->order;
 
         $category->save();
@@ -61,6 +62,7 @@ class SubCategoryController extends Controller
         $sub_category->name = $request->name;
         $sub_category->category_id = $request->category_id;
         $sub_category->status = $request->status;
+        $sub_category->show_on_home = $request->show_on_home;
         $sub_category->order = $request->order;
 
         $sub_category->update();

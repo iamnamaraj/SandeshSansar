@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('order');
-            $table->string('status');
+            $table->string('status')->default('Show');
+            $table->string('show_on_home')->default('Show');
             $table->integer('category_id');
             $table->timestamps();
         });

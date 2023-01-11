@@ -43,6 +43,14 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label>Show on home *</label>
+                                <select name="show_on_home" class="form-control">
+                                    <option value="Show" @if($sub_category->show_on_home == 'Show') selected @endif>Show</option>
+                                    <option value="Hide" @if($sub_category->show_on_home == 'Hide') selected @endif>Hide</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label>Order *</label>
                                 <input type="text" class="form-control" name="order" value="{{ $sub_category->order }}">
                             </div>
