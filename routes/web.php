@@ -14,15 +14,19 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
+use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
 
 // ---------------------------  Frontend  ------------------------
 
 Route::get('/', [FrontHomeController::class, 'home'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-//post
+//post view
 
 Route::get('/posts/{id}', [FrontPostController::class, 'view'])->name('front.post.view');
+
+//view all post of category
+Route::get('/subcats/{id}', [FrontSubcategoryController::class, 'view'])->name('subcats.view');
 
 
 // --------------------- Backend ------------------------------

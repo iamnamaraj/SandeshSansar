@@ -9,8 +9,7 @@
                     <nav class="breadcrumb-container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="">{{ $post->rSubCategory->rCategory->name }}</a></li>
-                            <li class="breadcrumb-item"><a href="">{{ $post->rSubCategory->name }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('subcats.view', $post->rSubCategory->id) }}">{{ $post->rSubCategory->name }}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
                         </ol>
                     </nav>
@@ -33,7 +32,7 @@
                         </div>
                         <div class="item">
                             <b><i class="fas fa-edit"></i></b>
-                            <a href="">{{ $post->rSubCategory->name }}</a>
+                            <a href="{{ route('subcats.view', $post->rSubCategory->id) }}">{{ $post->rSubCategory->name }}</a>
                         </div>
                         <div class="item">
                             <b><i class="fas fa-clock"></i></b>
