@@ -25,46 +25,49 @@
                 <div class="category-page">
                     <div class="row">
 
-                        @foreach ($posts as $post)
 
-                            <div class="col-lg-6 col-md-12">
-                                <div class="category-page-post-item">
-                                    <div class="photo">
-                                        <img src="{{ asset('uploads/'.$post->photo) }}" alt="">
-                                    </div>
-                                    <div class="category">
-                                        <span class="badge bg-success">{{ $subcat->name }}</span>
-                                    </div>
-                                    <h3><a href="{{ route('front.post.view', $post->id) }}">{{ $post->title }}</a></h3>
-                                    <div class="date-user">
-                                        <div class="user">
+                        @if (count($posts))
+                            @foreach ($posts as $post)
 
-                                            @if ($post->author_id == 0)
-                                                @php
-                                                    $user_data = \App\Models\Admin::where('id', $post->admin_id)->first();
-                                                @endphp
-                                            @else
-
-                                            @endif
-                                            <a href="{{ route('front.post.view', $post->id) }}">{{ $user_data->name }}</a>
-
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="category-page-post-item">
+                                        <div class="photo">
+                                            <img src="{{ asset('uploads/'.$post->photo) }}" alt="">
                                         </div>
+                                        <div class="category">
+                                            <span class="badge bg-success">{{ $subcat->name }}</span>
+                                        </div>
+                                        <h3><a href="{{ route('front.post.view', $post->id) }}">{{ $post->title }}</a></h3>
+                                        <div class="date-user">
+                                            <div class="user">
 
-                                        <div class="date">
-                                            @php
-                                            $ts = strtotime($post->updated_at);
-                                            $updated_date = date('d M Y', $ts);
-                                            @endphp
-                                            <a href="{{ route('front.post.view', $post->id) }}">{{ $updated_date }}</a>
+                                                @if ($post->author_id == 0)
+                                                    @php
+                                                        $user_data = \App\Models\Admin::where('id', $post->admin_id)->first();
+                                                    @endphp
+                                                @else
+
+                                                @endif
+                                                <a href="{{ route('front.post.view', $post->id) }}">{{ $user_data->name }}</a>
+
+                                            </div>
+
+                                            <div class="date">
+                                                @php
+                                                $ts = strtotime($post->updated_at);
+                                                $updated_date = date('d M Y', $ts);
+                                                @endphp
+                                                <a href="{{ route('front.post.view', $post->id) }}">{{ $updated_date }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            @endforeach
+                        @else
+                            <span class="text-danger">Sorry,no post is found.</span>
 
-
-
-                        @endforeach
+                        @endif
 
 
                         <div class="col-md-12">

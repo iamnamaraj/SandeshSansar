@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label>Staus *</label>
+                                <label>show on menu *</label>
                                 <select name="status" class="form-control">
                                     <option value="Show" @if($sub_category->status == 'Show') selected @endif>Show</option>
                                     <option value="Hide" @if($sub_category->status == 'Hide') selected @endif>Hide</option>

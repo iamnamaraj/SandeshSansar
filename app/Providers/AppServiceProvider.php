@@ -4,6 +4,8 @@ namespace App\Providers;
 
 
 // use App\Models\SidebarAd;
+
+use App\Models\Category;
 use App\Models\SidebarAd;
 use App\Models\TopAdvertisement;
 use Illuminate\Pagination\Paginator;
@@ -30,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+        $categories = Category::with('rSubCategory')->where('status', 'Show')->orderBy('order', 'asc')->get();
         $top_ad_data = TopAdvertisement::where('id', 1)->first();
         $top_sidebar_ad = SidebarAd::where('sidebar_ad_location', 'Top')->get();
         $bottom_sidebar_ad = SidebarAd::where('sidebar_ad_location', 'Bottom')->get();
@@ -37,5 +40,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('global_top_ad_data', $top_ad_data);
         view()->share('global_top_sidebar_ad', $top_sidebar_ad);
         view()->share('global_bottom_sidebar_ad',  $bottom_sidebar_ad);
+        view()->share('global_bottom_sidebar_ad',  $bottom_sidebar_ad);
+        view()->share('global_categories', $categories);
     }
 }
