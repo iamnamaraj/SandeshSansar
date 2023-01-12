@@ -1,17 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\LoginController;
+use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SidebarAdController;
+use App\Http\Controllers\Front\DisclaimerController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
 use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
@@ -19,10 +26,21 @@ use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryControll
 // ---------------------------  Frontend  ------------------------
 
 Route::get('/', [FrontHomeController::class, 'home'])->name('home');
+
+//pages
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+Route::get('/terms', [TermsController::class, 'index'])->name('terms');
+Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy');
+Route::get('/disclaimer', [DisclaimerController::class, 'index'])->name('disclaimer');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send_email', [ContactController::class, 'send_email'])->name('contact.send_email');
+
+
 
 //post view
-
 Route::get('/posts/{id}', [FrontPostController::class, 'view'])->name('front.post.view');
 
 //view all post of category
@@ -94,3 +112,34 @@ Route::get('admin/posts/tag/{id}/{id1}', [PostController::class, 'tag_delete'])-
 
 Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings');
 Route::post('/admin/settings/update', [SettingController::class, 'update'])->name('admin.settings.update');
+
+
+//Pages section
+
+//about page
+Route::get('/admin/pages/about', [PageController::class, 'about'])->name('admin.about');
+Route::post('/admin/pages/update', [PageController::class, 'about_update'])->name('admin.about.update');
+
+//Faq page
+Route::get('/admin/pages/faq', [PageController::class, 'faq'])->name('admin.faq');
+Route::post('/admin/pages/faq/update', [PageController::class, 'faq_update'])->name('admin.faq.update');
+
+//Terms & Conditions  page
+Route::get('/admin/pages/terms', [PageController::class, 'terms'])->name('admin.terms');
+Route::post('/admin/pages/terms/update', [PageController::class, 'terms_update'])->name('admin.terms.update');
+
+//policy & privacies  page
+Route::get('/admin/pages/privacy', [PageController::class, 'privacy'])->name('admin.privacy');
+Route::post('/admin/pages/privacy/update', [PageController::class, 'privacy_update'])->name('admin.privacy.update');
+
+//Disclaimer  page
+Route::get('/admin/pages/disclaimer', [PageController::class, 'disclaimer'])->name('admin.disclaimer');
+Route::post('/admin/pages/disclaimer/update', [PageController::class, 'disclaimer_update'])->name('admin.disclaimer.update');
+
+//Disclaimer  page
+Route::get('/admin/pages/login', [PageController::class, 'login'])->name('admin.login');
+Route::post('/admin/pages/login/update', [PageController::class, 'login_update'])->name('admin.login.update');
+
+//contact  page
+Route::get('/admin/pages/contact', [PageController::class, 'contact'])->name('admin.contact');
+Route::post('/admin/pages/contact/update', [PageController::class, 'contact_update'])->name('admin.contact.update');

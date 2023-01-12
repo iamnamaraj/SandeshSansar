@@ -13,11 +13,23 @@
                 <div class="item">
                     <h2 class="heading">Useful Links</h2>
                     <ul class="useful-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="terms.html">Terms and Conditions</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="disclaimer.html">Disclaimer</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+
+                        @if ($global_page_data->terms_status == 'Show')
+                            <li><a href="{{ route('terms') }}">{{ $global_page_data->terms_title }}</a></li>
+                        @endif
+
+                        @if ($global_page_data->privacy_status == 'Show')
+                            <li><a href="{{ route('privacy') }}">{{ $global_page_data->privacy_title }}</a></li>
+                        @endif
+
+                        @if ($global_page_data->disclaimer_status == 'Show')
+                            <li><a href="{{ route('disclaimer') }}">{{ $global_page_data->disclaimer_title }}</a></li>
+                        @endif
+
+                        @if ($global_page_data->contact_status == 'Show')
+                            <li><a href="{{ route('contact') }}">{{ $global_page_data->contact_title }}</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

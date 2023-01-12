@@ -30,6 +30,19 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown {{ Request::is('admin/pages*')   ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Pages</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/pages/about') ? 'active' : ''}} "><a class="nav-link" href="{{ route('admin.about') }}"><i class="fas fa-hand-point-right"></i> <span>Abouts</span></a></li>
+                    <li class="{{ Request::is('admin/pages/faq') ? 'active' : ''}} "><a class="nav-link" href="{{ route('admin.faq') }}"><i class="fas fa-hand-point-right"></i> <span>FAQ</span></a></li>
+                    <li class="{{ Request::is('admin/pages/terms') ? 'active' : ''}} "><a class="nav-link" href="{{ route('admin.terms') }}"><i class="fas fa-hand-point-right"></i> <span>Terms & Conditions</span></a></li>
+                    <li class="{{ Request::is('admin/pages/privacy') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.privacy') }}"><i class="fas fa-angle-right"></i>Privacy & Policies</a></li>
+                    <li class="{{ Request::is('admin/pages/disclaimer') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.disclaimer') }}"><i class="fas fa-angle-right"></i>Disclaimers</a></li>
+                    <li class="{{ Request::is('admin/pages/login') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.login') }}"><i class="fas fa-angle-right"></i>Login page</a></li>
+                    <li class="{{ Request::is('admin/pages/contact') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.contact') }}"><i class="fas fa-angle-right"></i>Contact page</a></li>
+                </ul>
+            </li>
+
 
 
             {{-- <li class="nav-item dropdown active">

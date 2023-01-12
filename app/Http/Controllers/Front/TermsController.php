@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class TermsController extends Controller
 {
     public function index()
     {
-        $about  = Page::where('id', 1)->first();
-        return view('front.about', compact('about'));
+        $terms = Page::where('id', 1)->first();
+        return view('front.terms', compact('terms'));
     }
 }

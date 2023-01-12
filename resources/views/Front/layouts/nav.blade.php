@@ -9,10 +9,23 @@
             </div>
             <div class="col-md-6">
                 <ul class="right">
-                    <li class="menu"><a href="faq.html">FAQ</a></li>
-                    <li class="menu"><a href="{{route('about')}}">About</a></li>
+
+                    @if ($global_page_data->faq_status == 'Show')
+                        <li class="menu"><a href="{{ route('faq') }}">{{ $global_page_data->faq_title }}</a></li>
+                    @endif
+
+
+                    @if ($global_page_data->about_status == 'Show')
+                        <li class="menu"><a href="{{route('about')}}">{{ $global_page_data->about_title }}</a></li>
+                    @endif
+
                     <li class="menu"><a href="contact.html">Contact</a></li>
-                    <li class="menu"><a href="login.html">Login</a></li>
+
+                    @if ($global_page_data->login_status == 'Show')
+                        <li class="menu"><a href="{{ route('login') }}">{{ $global_page_data->login_title }}</a></li>
+                    @endif
+
+
                     <li>
                         <div class="language-switch">
                             <select name="">
