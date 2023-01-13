@@ -49,6 +49,11 @@
                                 <textarea name="body" class="form-control snote" id="" cols="30" rows="10" ></textarea>
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label>Tags *</label>
+                                <input type="text" class="form-control" name="tag_name" placeholder="Separate tags using coma(,)" value="">
+                            </div>
+
 
                             <div class="form-group mb-3">
                                 <label>Is Sharable ?*</label>
@@ -67,8 +72,11 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label>Tags *</label>
-                                <input type="text" class="form-control" name="tag_name" placeholder="Separate tags using coma(,)" value="">
+                                <label>Share with Subscribers ?*</label>
+                                <select name="subscriber_share" class="form-control">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
                             </div>
 
 

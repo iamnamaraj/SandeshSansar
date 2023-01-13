@@ -6,9 +6,12 @@ use App\Models\Post;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\Websitemail;
+use App\Models\Subscriber;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -19,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('rSubCategory.rCategory')->get();
+        $posts = Post::with('rSubCategory.rCategory')->orderBy('id', 'desc')->get();
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -91,6 +94,25 @@ class PostController extends Controller
                 $tag->post_id = $ai_id;
                 $tag->tag_name = trim($tags_array_new[$i]);
                 $tag->save();
+            }
+        }
+
+        if ($request->subscriber_share == 1) {
+
+            $subject = 'A new news is published';
+
+            $body = 'Hi, a new news is published in the website. You might be interested to know, do not forget to visit the site.
+                    You can direct goto the post by clicking headline of the post given down below <br>';
+            $body .= '<a target="_blank" href="' . route('front.post.view', $ai_id) . '">';
+            $body .= $request->title;
+            $body .= '</a>';
+
+
+
+            $subscribers = Subscriber::where('status', 'Active')->get();
+
+            foreach ($subscribers as $subscriber) {
+                Mail::to($subscriber->email)->send(new Websitemail($subject, $body));
             }
         }
 

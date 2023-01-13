@@ -28,8 +28,8 @@
                             <div class="form-group mb-3">
                                 <label>Parent Category *</label>
                                 <select name="category_id" class="form-control">
+                                    <option value="">choose parent category..</option>
                                     @foreach ($categories as $parent)
-                                    <option value="">Choose parent category..</option>
                                         <option value="{{$parent->id}}">{{ $parent->name }}</option>
                                     @endforeach
                                 </select>

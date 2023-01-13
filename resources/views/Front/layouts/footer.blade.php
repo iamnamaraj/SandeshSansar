@@ -74,20 +74,27 @@
             </div>
 
             <div class="col-md-3">
+
+
                 <div class="item">
                     <h2 class="heading">Newsletter</h2>
                     <p>
                         In order to get the latest news and other great items, please subscribe us here:
                     </p>
-                    <form action="" method="post">
+                    <form action="{{ route('subscriber.send-email') }}" method="post" class="form_subscribe_ajax">
+                        @csrf
+
                         <div class="form-group">
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="email" placeholder="Email address" class="form-control">
+                            <span class="text-danger  error-text email_error"></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Subscribe Now">
                         </div>
                     </form>
                 </div>
+
+
             </div>
 
         </div>

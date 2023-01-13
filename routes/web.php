@@ -20,9 +20,11 @@ use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Front\DisclaimerController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
+use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
 use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
+use App\Http\Controllers\Front\SubscriberController;
 
 // ---------------------------  Frontend  ------------------------
 
@@ -47,10 +49,15 @@ Route::get('/posts/{id}', [FrontPostController::class, 'view'])->name('front.pos
 //view all post of category
 Route::get('/subcats/{id}', [FrontSubcategoryController::class, 'view'])->name('subcats.view');
 
+//Subscriber(Newsletter section)
+
+Route::post('/subscriber/send-email', [SubscriberController::class, 'send_email'])->name('subscriber.send-email');
+Route::get('subscriber/verify/{token}/{email}', [SubscriberController::class, 'verify'])->name('subscriber.verify');
+
+
+
 
 // --------------------- Backend ------------------------------
-
-
 // Admin Authentication
 
 Route::get('/admin/login', [AuthController::class, 'login'])->name('admin.login');
@@ -150,7 +157,12 @@ Route::post('/admin/pages/contact/update', [PageController::class, 'contact_upda
 Route::get('/admin/faq', [AdminFaqController::class, 'faq'])->name('admin.faq');
 Route::get('/admin/faq/create', [AdminFaqController::class, 'create'])->name('admin.faq.create');
 Route::Post('/admin/faq/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
-Route::Post('/admin/faq/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
 Route::get('/admin/faq/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin.faq.edit');
 Route::post('/admin/faq/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faq.update');
 Route::get('/admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->name('admin.faq.delete');
+
+
+//Admin subscribers
+Route::get('/admin/subscribers', [AdminSubscriberController::class, 'index'])->name('admin.subscriber');
+Route::get('/admin/subscribers/mail', [AdminSubscriberController::class, 'mail'])->name('admin.subscriber.mail');
+Route::post('/admin/subscribers/mail/send', [AdminSubscriberController::class, 'mail_send'])->name('admin.subscriber.mail.send');

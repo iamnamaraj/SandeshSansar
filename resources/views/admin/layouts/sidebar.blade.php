@@ -30,6 +30,16 @@
                 </ul>
             </li>
 
+
+            <li class="nav-item dropdown {{ Request::is('admin/subscribers*')  ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Subscribers</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/subscribers') ? 'active' : ''}} "><a class="nav-link" href="{{ route('admin.subscriber') }}"><i class="fas fa-hand-point-right"></i> <span>All subscribers</span></a></li>
+                    <li class="{{ Request::is('admin/subscribers/mail') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.subscriber.mail') }}"><i class="fas fa-hand-point-right"></i> <span>Send mail</span></a></li>
+                </ul>
+            </li>
+
+
             <li class="nav-item dropdown {{ Request::is('admin/pages*')   ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Pages</span></a>
                 <ul class="dropdown-menu">
