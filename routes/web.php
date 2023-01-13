@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Front\DisclaimerController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -121,8 +122,8 @@ Route::get('/admin/pages/about', [PageController::class, 'about'])->name('admin.
 Route::post('/admin/pages/update', [PageController::class, 'about_update'])->name('admin.about.update');
 
 //Faq page
-Route::get('/admin/pages/faq', [PageController::class, 'faq'])->name('admin.faq');
-Route::post('/admin/pages/faq/update', [PageController::class, 'faq_update'])->name('admin.faq.update');
+Route::get('/admin/pages/faq', [PageController::class, 'faq'])->name('admin.page.faq');
+Route::post('/admin/pages/faq/update', [PageController::class, 'faq_update'])->name('admin.page.faq.update');
 
 //Terms & Conditions  page
 Route::get('/admin/pages/terms', [PageController::class, 'terms'])->name('admin.terms');
@@ -136,10 +137,20 @@ Route::post('/admin/pages/privacy/update', [PageController::class, 'privacy_upda
 Route::get('/admin/pages/disclaimer', [PageController::class, 'disclaimer'])->name('admin.disclaimer');
 Route::post('/admin/pages/disclaimer/update', [PageController::class, 'disclaimer_update'])->name('admin.disclaimer.update');
 
-//Disclaimer  page
-Route::get('/admin/pages/login', [PageController::class, 'login'])->name('admin.login');
+//login  page
+Route::get('/admin/pages/login', [PageController::class, 'login'])->name('admin.page.login');
 Route::post('/admin/pages/login/update', [PageController::class, 'login_update'])->name('admin.login.update');
 
 //contact  page
 Route::get('/admin/pages/contact', [PageController::class, 'contact'])->name('admin.contact');
 Route::post('/admin/pages/contact/update', [PageController::class, 'contact_update'])->name('admin.contact.update');
+
+
+//FAQ contoller
+Route::get('/admin/faq', [AdminFaqController::class, 'faq'])->name('admin.faq');
+Route::get('/admin/faq/create', [AdminFaqController::class, 'create'])->name('admin.faq.create');
+Route::Post('/admin/faq/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
+Route::Post('/admin/faq/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
+Route::get('/admin/faq/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin.faq.edit');
+Route::post('/admin/faq/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faq.update');
+Route::get('/admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->name('admin.faq.delete');

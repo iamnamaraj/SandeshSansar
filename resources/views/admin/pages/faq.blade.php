@@ -5,7 +5,7 @@
 
 @section('main_content')
 <div class="section-body">
-    <form action="{{ route('admin.faq.update') }}" method="post" >
+    <form action="{{ route('admin.page.faq.update') }}" method="post" >
         @csrf
 
         <div class="row">
