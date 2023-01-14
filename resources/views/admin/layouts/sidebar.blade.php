@@ -30,6 +30,9 @@
                 </ul>
             </li>
 
+            <li class="{{ Request::is('admin/live') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.live') }}"><i class="fas fa-hand-point-right"></i> <span>Live</span></a></li>
+
+
 
             <li class="nav-item dropdown {{ Request::is('admin/subscribers*')  ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Subscribers</span></a>

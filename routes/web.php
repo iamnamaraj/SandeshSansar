@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Front\DisclaimerController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
+use App\Http\Controllers\Admin\LiveChannelController;
 use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
@@ -166,3 +167,11 @@ Route::get('/admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->nam
 Route::get('/admin/subscribers', [AdminSubscriberController::class, 'index'])->name('admin.subscriber');
 Route::get('/admin/subscribers/mail', [AdminSubscriberController::class, 'mail'])->name('admin.subscriber.mail');
 Route::post('/admin/subscribers/mail/send', [AdminSubscriberController::class, 'mail_send'])->name('admin.subscriber.mail.send');
+
+//live channel
+Route::get('/admin/live', [LiveChannelController::class, 'index'])->name('admin.live');
+Route::get('/admin/live/create', [LiveChannelController::class, 'create'])->name('admin.live.create');
+Route::post('/admin/live/store', [LiveChannelController::class, 'store'])->name('admin.live.store');
+Route::get('/admin/live/edit/{id}', [LiveChannelController::class, 'edit'])->name('admin.live.edit');
+Route::post('/admin/live/update/{id}', [LiveChannelController::class, 'update'])->name('admin.live.update');
+Route::get('/admin/live/delete/{id}', [LiveChannelController::class, 'delete'])->name('admin.live.delete');
