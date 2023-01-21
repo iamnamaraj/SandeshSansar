@@ -211,34 +211,101 @@
         </div>
 
         <div class="widget">
+
+
             <div class="poll-heading">
                 <h2>Online Poll</h2>
             </div>
+
             <div class="poll">
                 <div class="question">
-                    Do you think that Apple products will be able to survive in the next 20 years?
+                   <b>{{ $global_poll_data->question }}</b>
                 </div>
-                <div class="answer-option">
-                    <form action="" method="post">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="poll" id="poll_id_1">
-                            <label class="form-check-label" for="poll_id_1">Yes</label>
+
+
+                @php
+
+                    $total_vote = $global_poll_data->yes_vote +$global_poll_data->no_vote;
+
+                    if($global_poll_data->yes_vote == 0) {
+                        $yes_percent = 0;
+                    } else {
+
+                        $yes_percent =  ($global_poll_data->yes_vote * 100)/$total_vote;
+                        $yes_percent =  ceil($yes_percent);
+                    }
+
+                    if($global_poll_data->no_vote == 0) {
+                        $no_percent = 0;
+                    } else {
+
+                        $no_percent =  ($global_poll_data->no_vote * 100)/$total_vote;
+                        $no_percent =  ceil($no_percent);
+                    }
+
+                @endphp
+
+                @if (session()->get('current_poll_id') == $global_poll_data->id)
+
+                    <div class="poll-result">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="width: 100px">Yes ({{ $global_poll_data->yes_vote }})</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $yes_percent }}%" aria-valuenow="{{ $yes_percent }}" aria-valuemin="0" aria-valuemax="100">{{ $yes_percent }}%</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>No ({{ $global_poll_data->no_vote }})</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $no_percent }}%" aria-valuenow="{{ $no_percent }}" aria-valuemin="0" aria-valuemax="100">{{ $no_percent }}%</div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </table>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="poll" id="poll_id_2">
-                            <label class="form-check-label" for="poll_id_2">No</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="poll" id="poll_id_3">
-                            <label class="form-check-label" for="poll_id_3">No Comment</label>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="poll-result.html" class="btn btn-primary old">Old Result</a>
-                        </div>
-                    </form>
-                </div>
+
+                        <a href="{{ route('vote.previous') }}" class="btn btn-primary old" style="margin-top: 0;">Old Result</a>
+
+                    </div>
+
+                @endif
+
+
+                @if (session()->get('current_poll_id') != $global_poll_data->id)
+
+                    <div class="answer-option">
+                        <form action="{{ route('vote.submit') }}" method="post">
+                            @csrf
+
+                            <input type="hidden" name="id" value="{{ $global_poll_data->id }}">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio"  name="vote" id="poll_id_1" value = "Yes" checked>
+                                <label class="form-check-label" for="poll_id_1">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vote" id="poll_id_2" value = "No">
+                                <label class="form-check-label" for="poll_id_2">No</label>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a href="{{ route('vote.previous') }}" class="btn btn-primary old">Old Result</a>
+                            </div>
+                        </form>
+                    </div>
+
+                @endif
+
             </div>
+
+
         </div>
 
     </div>

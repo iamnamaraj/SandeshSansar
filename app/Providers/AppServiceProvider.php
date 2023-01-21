@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\SidebarAd;
 use App\Models\LiveChannel;
+use App\Models\OnlinePoll;
 use App\Models\TopAdvertisement;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         $lives = LiveChannel::get();
         $recent_news = Post::with('rSubCategory')->orderBy('id', 'desc')->get();
         $popular_news = Post::with('rSubCategory')->orderBy('visitor', 'desc')->get();
+        $poll_data = OnlinePoll::orderBy('id', 'desc')->first();
 
 
         view()->share('global_top_ad_data', $top_ad_data);
@@ -54,5 +56,6 @@ class AppServiceProvider extends ServiceProvider
         view()->share('global_live_data', $lives);
         view()->share('global_recent_news', $recent_news);
         view()->share('global_popular_news', $popular_news);
+        view()->share('global_poll_data', $poll_data);
     }
 }

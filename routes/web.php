@@ -5,6 +5,7 @@ use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PollController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
@@ -15,17 +16,18 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Front\DisclaimerController;
+use App\Http\Controllers\Front\SubscriberController;
+use App\Http\Controllers\Admin\LiveChannelController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
-use App\Http\Controllers\Admin\LiveChannelController;
-use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
+use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
-use App\Http\Controllers\Front\SubscriberController;
+use App\Http\Controllers\Front\VoteController;
 
 // ---------------------------  Frontend  ------------------------
 
@@ -54,6 +56,10 @@ Route::get('/subcats/{id}', [FrontSubcategoryController::class, 'view'])->name('
 
 Route::post('/subscriber/send-email', [SubscriberController::class, 'send_email'])->name('subscriber.send-email');
 Route::get('subscriber/verify/{token}/{email}', [SubscriberController::class, 'verify'])->name('subscriber.verify');
+
+//vote controller
+Route::post('/vote/submit', [VoteController::class, 'submit'])->name('vote.submit');
+Route::get('/vote/previous', [VoteController::class, 'previous'])->name('vote.previous');
 
 
 
@@ -175,3 +181,11 @@ Route::post('/admin/live/store', [LiveChannelController::class, 'store'])->name(
 Route::get('/admin/live/edit/{id}', [LiveChannelController::class, 'edit'])->name('admin.live.edit');
 Route::post('/admin/live/update/{id}', [LiveChannelController::class, 'update'])->name('admin.live.update');
 Route::get('/admin/live/delete/{id}', [LiveChannelController::class, 'delete'])->name('admin.live.delete');
+
+//poll vote
+Route::get('/admin/poll', [PollController::class, 'index'])->name('admin.poll');
+Route::get('/admin/poll/create', [PollController::class, 'create'])->name('admin.poll.create');
+Route::post('/admin/poll/store', [PollController::class, 'store'])->name('admin.poll.store');
+Route::get('/admin/poll/edit/{id}', [PollController::class, 'edit'])->name('admin.poll.edit');
+Route::post('/admin/poll/update/{id}', [PollController::class, 'update'])->name('admin.poll.update');
+Route::get('/admin/poll/delete/{id}', [PollController::class, 'delete'])->name('admin.poll.delete');
