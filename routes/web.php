@@ -70,6 +70,11 @@ Route::get('/archive/{month}/{year}', [ArchiveController::class, 'detail'])->nam
 //TagController
 Route::get('/tag/{tagname}', [TagController::class, 'show'])->name('tag.show');
 
+//get subcategory by choosing category
+Route::get('/subcategory-by-category/{id}', [FrontHomeController::class, 'subcategory'])->name('subcategory.get');
+
+//searching
+Route::post('/search/result', [FrontHomeController::class, 'search'])->name('search.item');
 
 
 
