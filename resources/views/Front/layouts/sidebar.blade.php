@@ -59,17 +59,41 @@
                 <h2>Archive</h2>
             </div>
             <div class="archive">
-                <select name="" class="form-select">
-                    <option value="">Select Month</option>
-                    <option value="">February 2022</option>
-                    <option value="">January 2022</option>
-                    <option value="">December 2021</option>
-                    <option value="">November 2021</option>
-                    <option value="">October 2021</option>
-                    <option value="">September 2021</option>
-                    <option value="">August 2021</option>
-                    <option value="">July 2021</option>
-                </select>
+
+                @php
+                    $archive_arr = [];
+                    $all_post = \App\Models\Post::orderBy('id', 'desc')->get();
+                    foreach($all_post as $post) {
+                        $ts = strtotime($post->created_at);
+                        $month = date('m', $ts);
+                        $full_month = date('F',$ts);
+                        $year = date('Y', $ts);
+
+                        $archive_arr[] = $month .'-'. $full_month .'-'. $year;
+                    }
+
+                    $archive_arr = array_values(array_unique($archive_arr));
+
+                @endphp
+
+                <form action="{{ route('archive.show') }}" method="post" >
+                    @csrf
+
+                    <select name="archive_date" class="form-select" onchange="this.form.submit()">
+
+                        <option value="">Select Month</option>
+                        @for ($i=0; $i<count($archive_arr); $i++)
+                            @php
+                                $temp_arr = explode('-',$archive_arr[$i])
+                            @endphp
+                            <option value="{{$temp_arr[0].'-'.$temp_arr[2]}}">{{ $temp_arr[1] }}, {{ $temp_arr[2] }}</option>
+                        @endfor
+
+
+                    </select>
+                </form>
+
+
             </div>
         </div>
 

@@ -7,12 +7,14 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PollController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Front\VoteController;
 use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\LoginController;
 use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Front\ArchiveController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -27,7 +29,6 @@ use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
 use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
-use App\Http\Controllers\Front\VoteController;
 
 // ---------------------------  Frontend  ------------------------
 
@@ -60,6 +61,11 @@ Route::get('subscriber/verify/{token}/{email}', [SubscriberController::class, 'v
 //vote controller
 Route::post('/vote/submit', [VoteController::class, 'submit'])->name('vote.submit');
 Route::get('/vote/previous', [VoteController::class, 'previous'])->name('vote.previous');
+
+//Archive controller
+Route::post('/archive/post', [ArchiveController::class, 'show'])->name('archive.show');
+Route::get('/archive/{month}/{year}', [ArchiveController::class, 'detail'])->name('archive.detail');
+
 
 
 
