@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FaqController;
+use App\Http\Controllers\Front\TagController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
@@ -65,6 +66,9 @@ Route::get('/vote/previous', [VoteController::class, 'previous'])->name('vote.pr
 //Archive controller
 Route::post('/archive/post', [ArchiveController::class, 'show'])->name('archive.show');
 Route::get('/archive/{month}/{year}', [ArchiveController::class, 'detail'])->name('archive.detail');
+
+//TagController
+Route::get('/tag/{tagname}', [TagController::class, 'show'])->name('tag.show');
 
 
 

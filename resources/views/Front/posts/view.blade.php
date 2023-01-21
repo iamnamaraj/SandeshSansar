@@ -54,7 +54,7 @@
                         <h2>Tags</h2>
                         <div class="tag-section-content">
                             @foreach ($tags as $tag)
-                                <a href=""><span class="badge bg-success">{{ $tag->tag_name }}</span></a>
+                                <a href="{{ route('tag.show', $tag->tag_name) }}"><span class="badge bg-success">{{ $tag->tag_name }}</span></a>
                             @endforeach
 
 
