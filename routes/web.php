@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\SidebarAdController;
 use App\Http\Controllers\Front\DisclaimerController;
 use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Admin\LiveChannelController;
+use App\Http\Controllers\Admin\SocialmediaController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\HomeAdvertisementController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
@@ -204,3 +205,12 @@ Route::post('/admin/poll/store', [PollController::class, 'store'])->name('admin.
 Route::get('/admin/poll/edit/{id}', [PollController::class, 'edit'])->name('admin.poll.edit');
 Route::post('/admin/poll/update/{id}', [PollController::class, 'update'])->name('admin.poll.update');
 Route::get('/admin/poll/delete/{id}', [PollController::class, 'delete'])->name('admin.poll.delete');
+
+
+//Social media
+Route::get('/admin/social_media', [SocialmediaController::class, 'index'])->name('admin.social_media');
+Route::get('/admin/social_media/create', [SocialmediaController::class, 'create'])->name('admin.social_media.create');
+Route::post('/admin/social_media/store', [SocialmediaController::class, 'store'])->name('admin.social_media.store');
+Route::get('/admin/social_media/edit/{id}', [SocialmediaController::class, 'edit'])->name('admin.social_media.edit');
+Route::post('/admin/social_media/update/{id}', [SocialmediaController::class, 'update'])->name('admin.social_media.update');
+Route::get('/admin/social_media/delete/{id}', [SocialmediaController::class, 'delete'])->name('admin.social_media.delete');

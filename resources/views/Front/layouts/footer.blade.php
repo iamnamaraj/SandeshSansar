@@ -64,11 +64,13 @@
                         </div>
                     </div>
                     <ul class="social">
-                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                        <li><a href=""><i class="fab fa-pinterest-p"></i></a></li>
-                        <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                        @foreach ($global_social_media as $media)
+
+                            <li><a target="_blank" href="{{ $media->url }}"><i class="{{ $media->icon }}"></i></a></li>
+
+                        @endforeach
+
+
                     </ul>
                 </div>
             </div>
