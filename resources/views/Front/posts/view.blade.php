@@ -76,64 +76,55 @@
                             })();
                         </script>
                     </div>
+
+
+
                     <div class="related-news">
                         <div class="related-news-heading">
                             <h2>Related News</h2>
                         </div>
+
                         <div class="related-post-carousel owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="photo">
-                                    <img src="uploads/n6.jpg" alt="">
-                                </div>
-                                <div class="category">
-                                    <span class="badge bg-success">International</span>
-                                </div>
-                                <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
-                                <div class="date-user">
-                                    <div class="user">
-                                        <a href="">Paul David</a>
+
+                            @foreach ($related_post as $posts)
+                                @if ($posts->id == $post->id)
+                                    @continue
+                                @endif
+
+                                <div class="item">
+                                    <div class="photo">
+                                        <img src="{{ asset('uploads/'.$posts->photo) }}" alt="">
                                     </div>
-                                    <div class="date">
-                                        <a href="">10 Jan, 2022</a>
+                                    <div class="category">
+                                        <span class="badge bg-success">{{ $post->rSubCategory->name }}</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="photo">
-                                    <img src="uploads/n6.jpg" alt="">
-                                </div>
-                                <div class="category">
-                                    <span class="badge bg-success">International</span>
-                                </div>
-                                <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
-                                <div class="date-user">
-                                    <div class="user">
-                                        <a href="">Paul David</a>
-                                    </div>
-                                    <div class="date">
-                                        <a href="">10 Jan, 2022</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="photo">
-                                    <img src="uploads/n6.jpg" alt="">
-                                </div>
-                                <div class="category">
-                                    <span class="badge bg-success">International</span>
-                                </div>
-                                <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
-                                <div class="date-user">
-                                    <div class="user">
-                                        <a href="">Paul David</a>
-                                    </div>
-                                    <div class="date">
-                                        <a href="">10 Jan, 2022</a>
+                                    <h3><a href="{{ route('front.post.view', $posts->id) }}">{{ $posts->title }}</a></h3>
+                                    <div class="date-user">
+                                        <div class="user">
+                                            @if ($posts->author_id == 0)
+                                                @php
+                                                    $user_data = App\Models\Admin::where('id', $posts->admin_id)->first();
+                                                @endphp
+                                            @endif
+                                            <a href="">{{ $user_data->name }}</a>
+                                        </div>
+                                        <div class="date">
+                                            @php
+                                                $ts = strtotime($posts->updated_at);
+                                                $updated_date = date('d M Y', $ts);
+                                            @endphp
+                                            <a href="">{{ $updated_date }}</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
+
+
                         </div>
                     </div>
+
+
+
                 </div>
 
 

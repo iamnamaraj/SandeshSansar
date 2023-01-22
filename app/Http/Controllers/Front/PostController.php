@@ -28,7 +28,9 @@ class PostController extends Controller
         $post->update();
 
 
+        //related post section
+        $related_post = Post::orderBy('id', 'desc')->where('sub_category_id', $post->sub_category_id)->get();
 
-        return view('front.posts.view', compact('post', 'user_data', 'tags'));
+        return view('front.posts.view', compact('post', 'user_data', 'tags', 'related_post'));
     }
 }
