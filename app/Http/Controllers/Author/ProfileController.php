@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Author;
 
-use App\Models\Admin;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,17 +10,18 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function edit_profile()
+    public function profile()
     {
-        return view('admin.profile');
+        return view('author.profile');
     }
 
-    public function edit_profile_submit(Request $request)
+    public function profile_update(Request $request)
     {
-        $admin_data = Admin::where('email', Auth::guard('admin')->user()->email)->first();
+        $author_data = Author::where('email', Auth::guard('author')->user()->email)->first();
+
         $request->validate([
             'name'  =>  ['required'],
-            'email' =>  ['required', 'email'],
+            'email' => ['required', 'email', 'unique:authors,email,' . $author_data->id],
         ]);
 
         if ($request->password != '') {
@@ -29,29 +30,28 @@ class ProfileController extends Controller
                 'retype_password'   =>  ['required', 'same:password'],
             ]);
 
-            $admin_data->password = Hash::make($request->password);
+            $author_data->password = Hash::make($request->password);
         }
 
         if ($request->hasFile('photo')) {
             $request->validate([
                 'photo' =>  ['image', 'mimes:png,jpg,jpeg,gif'],
             ]);
-
-            if ($admin_data->photo != '') {
-                unlink(public_path('uploads/' . $admin_data->photo));
+            if ($author_data->photo != '') {
+                unlink(public_path('uploads/' . $author_data->photo));
             }
 
             $ext = $request->file('photo')->extension();
-            $final_name = 'admin' . '.' . $ext;
+            $final_name = 'author' . time() . '.' . $ext;
 
             $request->file('photo')->move(public_path('uploads/'), $final_name);
 
-            $admin_data->photo = $final_name;
+            $author_data->photo = $final_name;
         }
 
-        $admin_data->name = $request->name;
-        $admin_data->email = $request->email;
-        $admin_data->update();
+        $author_data->name = $request->name;
+        $author_data->email = $request->email;
+        $author_data->update();
 
         return redirect()->back()->with('success', 'Profile ionformation is updated successfully!!');
     }

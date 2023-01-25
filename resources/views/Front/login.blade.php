@@ -22,19 +22,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="login-form">
-                        <div class="mb-3">
-                            <label for="" class="form-label">Email Address</label>
-                            <input type="text" class="form-control">
+
+                    <form action="{{ route('author.login-submit') }}" method="post">
+                        @csrf
+
+                        <div class="login-form">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Email Address</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}">
+
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Password</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
+
+                                @error('password')
+                                 <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary bg-website">Login</button>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary bg-website">Login</button>
-                        </div>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </div>

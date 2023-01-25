@@ -41,7 +41,7 @@ return new class extends Migration
             $table->text('disclaimer_status')->default('Show');
 
             $table->text('login_title');
-            $table->longText('login_status')->default('Show');
+            $table->text('login_status')->default('Show');
             $table->timestamps();
         });
     }

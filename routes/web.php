@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\TopAdController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\LoginController;
 use App\Http\Controllers\Front\TermsController;
+use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Front\ArchiveController;
@@ -30,6 +31,8 @@ use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
 use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
+use App\Http\Controllers\Author\HomeController as AuthorHomeController;
+use App\Http\Controllers\Author\ProfileController as AuthorProfileController;
 use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
 
 // ---------------------------  Frontend  ------------------------
@@ -42,11 +45,8 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms');
 Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy');
 Route::get('/disclaimer', [DisclaimerController::class, 'index'])->name('disclaimer');
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send_email', [ContactController::class, 'send_email'])->name('contact.send_email');
-
 
 
 //post view
@@ -80,6 +80,34 @@ Route::post('/search/result', [FrontHomeController::class, 'search'])->name('sea
 
 
 
+// -------------------Author Section-------------------------------
+
+//Author login section
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login/submit', [LoginController::class, 'login_submit'])->name('author.login-submit');
+Route::get('/logout', [LoginController::class, 'logout'])->name('author.logout');
+
+
+//author dashboard
+Route::get('/author/dashboard', [AuthorHomeController::class, 'dashboard'])->name('author.dashboard')->middleware('author:author');
+
+
+//author profile
+Route::get('/author/profile', [AuthorProfileController::class, 'profile'])->name('author.profile')->middleware('author:author');
+Route::post('/author/profile/update', [AuthorProfileController::class, 'profile_update'])->name('author.profile.update')->middleware('author:author');
+
+
+
+
+
+
+
+
+
+
+
+
+
 // --------------------- Backend ------------------------------
 // Admin Authentication
 
@@ -98,8 +126,8 @@ Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.da
 Route::get('/admin/profile', [ProfileController::class, 'edit_profile'])->name('admin.profile');
 Route::post('/admin/profile-submit', [ProfileController::class, 'edit_profile_submit'])->name('admin.profile.submit');
 
-//Advertisements
 
+//Advertisements section
 //home ad
 Route::get('/admin/home-ad', [HomeAdvertisementController::class, 'home_ad'])->name('admin.home-ad');
 Route::post('/admin/home-ad/submit', [HomeAdvertisementController::class, 'ad_submit'])->name('admin.home-ad.submit');
@@ -214,3 +242,11 @@ Route::post('/admin/social_media/store', [SocialmediaController::class, 'store']
 Route::get('/admin/social_media/edit/{id}', [SocialmediaController::class, 'edit'])->name('admin.social_media.edit');
 Route::post('/admin/social_media/update/{id}', [SocialmediaController::class, 'update'])->name('admin.social_media.update');
 Route::get('/admin/social_media/delete/{id}', [SocialmediaController::class, 'delete'])->name('admin.social_media.delete');
+
+//Author Controller
+Route::get('/admin/author', [AuthorController::class, 'index'])->name('admin.author');
+Route::get('/admin/author/create', [AuthorController::class, 'create'])->name('admin.author.create');
+Route::post('/admin/author/store', [AuthorController::class, 'store'])->name('admin.author.store');
+Route::get('/admin/author/edit/{id}', [AuthorController::class, 'edit'])->name('admin.author.edit');
+Route::post('/admin/author/update/{id}', [AuthorController::class, 'update'])->name('admin.author.update');
+Route::get('/admin/author/delete/{id}', [AuthorController::class, 'delete'])->name('admin.author.delete');

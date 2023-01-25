@@ -30,6 +30,15 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown {{ Request::is('admin/author*')   ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Authors</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/author*') ? 'active' : ''}} "><a class="nav-link" href="{{ route('admin.author') }}"><i class="fas fa-hand-point-right"></i> <span>Authors list</span></a></li>
+                    {{-- <li class="{{ Request::is('admin/sub-categories*') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.sub-categories') }}"><i class="fas fa-hand-point-right"></i> <span>Sub Categories</span></a></li> --}}
+                </ul>
+            </li>
+
+
             <li class="{{ Request::is('admin/live') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.live') }}"><i class="fas fa-hand-point-right"></i> <span>Live</span></a></li>
 
             <li class="{{ Request::is('admin/poll') ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.poll') }}"><i class="fas fa-hand-point-right"></i> <span>Online poll</span></a></li>
