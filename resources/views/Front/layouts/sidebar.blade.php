@@ -134,9 +134,11 @@
                                                     $user_data = App\Models\Admin::where('id', $news->admin_id)->first();
                                                 @endphp
                                             @else
-                                                {{-- {{ auth section}}     --}}
+                                                @php
+                                                    $user_data = App\Models\Author::where('id', $news->author_id)->first();
+                                                @endphp
                                             @endif
-                                            <a href="">{{ $user_data->name }}</a>
+                                            <a href="javascript:void;">{{ $user_data->name }}</a>
 
                                         </div>
                                         <div class="date">
@@ -144,7 +146,7 @@
                                                 $ts = strtotime($news->updated_at);
                                                 $updated_date = date('d M Y', $ts);
                                             @endphp
-                                            <a href="">{{ $updated_date }}</a>
+                                            <a href="javascript:void;">{{ $updated_date }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -178,9 +180,11 @@
                                                 $user_data = App\Models\Admin::where('id', $news->admin_id)->first();
                                             @endphp
                                         @else
-                                            {{-- {{ auth section}}     --}}
+                                            @php
+                                                $user_data = App\Models\Author::where('id', $news->author_id)->first();
+                                            @endphp
                                         @endif
-                                        <a href="">{{ $user_data->name }}</a>
+                                        <a href="javascript:void;">{{ $user_data->name }}</a>
 
                                     </div>
 
@@ -189,7 +193,7 @@
                                             $ts = strtotime($news->updated_at);
                                             $updated_date = date('d M Y', $ts);
                                         @endphp
-                                        <a href="">{{ $updated_date }}</a>
+                                        <a href="javascript:void;">{{ $updated_date }}</a>
                                     </div>
                                 </div>
                             </div>

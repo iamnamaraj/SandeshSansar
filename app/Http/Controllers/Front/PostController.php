@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Admin;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -18,6 +19,7 @@ class PostController extends Controller
         if ($post->author_id == 0) {
             $user_data = Admin::where('id', $post->admin_id)->first();
         } else {
+            $user_data = Author::where('id', $post->author_id)->first();
         }
 
 

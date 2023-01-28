@@ -11,6 +11,8 @@
 
              <li class= "{{ Request::is('author/dashboard') ? 'active' : '' }}" ><a class="nav-link" href="{{ route('author.dashboard') }}"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
 
+             <li class= "{{ Request::is('author/post*') ? 'active' : '' }}" ><a class="nav-link" href="{{ route('author.post') }}"><i class="fas fa-hand-point-right"></i> <span>Posts</span></a></li>
+
             {{-- <li class="nav-item dropdown {{ Request::is('admin/top-ad')||Request::is('admin/home-ad')||Request::is('admin/sidebar-ad*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Advertisement</span></a>
                 <ul class="dropdown-menu">

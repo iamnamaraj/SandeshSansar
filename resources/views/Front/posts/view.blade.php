@@ -100,10 +100,15 @@
                                     </div>
                                     <h3><a href="{{ route('front.post.view', $posts->id) }}">{{ $posts->title }}</a></h3>
                                     <div class="date-user">
+
                                         <div class="user">
                                             @if ($posts->author_id == 0)
                                                 @php
                                                     $user_data = App\Models\Admin::where('id', $posts->admin_id)->first();
+                                                @endphp
+                                            @else
+                                                @php
+                                                    $user_data = App\Models\Author::where('id', $posts->author_id)->first();
                                                 @endphp
                                             @endif
                                             <a href="">{{ $user_data->name }}</a>
@@ -115,6 +120,7 @@
                                             @endphp
                                             <a href="">{{ $updated_date }}</a>
                                         </div>
+
                                     </div>
                                 </div>
                             @endforeach

@@ -55,23 +55,27 @@
                                         </div>
                                         <h2><a href="{{ route('front.post.view',$post->id) }}">{{ $post->title }}</a></h2>
                                         <div class="date-user">
+
                                             <div class="user">
                                                 @if ($post->author_id == 0)
                                                   @php
                                                   $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
                                                   @endphp
-                                                  @else
-                                                  {{--- auther section--}}
+                                                @else
+                                                    @php
+                                                    $user_data = \App\models\Author::where('id', $post->author_id)->first();
+                                                    @endphp
 
-                                                  @endif
-                                                <a href="{{ route('front.post.view',$post->id) }}">{{ $user_data->name }}</a>
+                                                @endif
+                                                <a href="javascript:void;">{{ $user_data->name }}</a>
                                             </div>
+
                                             <div class="date">
                                                 @php
                                                 $ts = strtotime($post->updated_at);
                                                 $updated_date =  date('d M Y', $ts);
                                                 @endphp
-                                                <a href="{{ route('front.post.view',$post->id) }}">{{ $updated_date }}</a>
+                                                <a href="javascript:void;">{{ $updated_date }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -109,12 +113,13 @@
                                         <div class="date-user">
                                             <div class="user">
                                                 @if ($post->author_id == 0)
-                                                @php
-                                                $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
-                                                @endphp
+                                                    @php
+                                                    $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
+                                                    @endphp
                                                 @else
-                                                {{--- auther section--}}
-
+                                                    @php
+                                                    $user_data = \App\models\Author::where('id', $post->author_id)->first();
+                                                    @endphp
                                                 @endif
                                               <a href="{{ route('front.post.view',$post->id) }}">{{ $user_data->name }}</a>
                                             </div>
@@ -245,13 +250,14 @@
                                                     <div class="user">
                                                         @if ($post->author_id == 0)
                                                             @php
-                                                            $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
+                                                                $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
                                                             @endphp
-                                                            @else
-                                                            {{--- auther section--}}
-
+                                                        @else
+                                                            @php
+                                                                $user_data = \App\models\Author::where('id', $post->author_id)->first();
+                                                            @endphp
                                                         @endif
-                                                        <a href="{{ route('front.post.view', $post->id) }}">{{ $user_data->name }}</a>
+                                                        <a href="javascript:void;">{{ $user_data->name }}</a>
                                                     </div>
                                                     <div class="date">
                                                         @php
@@ -294,10 +300,12 @@
                                                             <div class="user">
                                                                 @if ($post->author_id == 0)
                                                                     @php
-                                                                    $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
+                                                                        $user_data = \App\models\Admin::where('id', $post->admin_id)->first();
                                                                     @endphp
                                                                 @else
-                                                                {{--- auther section--}}
+                                                                    @php
+                                                                        $user_data = \App\models\Author::where('id', $post->author_id)->first();
+                                                                    @endphp
 
                                                                 @endif
                                                                 <a href="{{ route('front.post.view', $post->id) }}">{{ $user_data->name }}</a>

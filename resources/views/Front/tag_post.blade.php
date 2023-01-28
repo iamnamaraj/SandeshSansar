@@ -50,7 +50,9 @@
                                                         $user_data = \App\Models\Admin::where('id', $post->admin_id)->first();
                                                     @endphp
                                                 @else
-
+                                                    @php
+                                                        $user_data = \App\Models\Author::where('id', $post->author_id)->first();
+                                                    @endphp
                                                 @endif
                                                 <a href="{{ route('front.post.view', $post->id) }}">{{ $user_data->name }}</a>
 

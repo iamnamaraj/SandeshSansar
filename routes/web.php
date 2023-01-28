@@ -32,6 +32,7 @@ use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PostController as FrontPostController;
 use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Author\HomeController as AuthorHomeController;
+use App\Http\Controllers\Author\PostController as AuthorPostController;
 use App\Http\Controllers\Author\ProfileController as AuthorProfileController;
 use App\Http\Controllers\Front\SubcategoryController as FrontSubcategoryController;
 
@@ -96,7 +97,14 @@ Route::get('/author/dashboard', [AuthorHomeController::class, 'dashboard'])->nam
 Route::get('/author/profile', [AuthorProfileController::class, 'profile'])->name('author.profile')->middleware('author:author');
 Route::post('/author/profile/update', [AuthorProfileController::class, 'profile_update'])->name('author.profile.update')->middleware('author:author');
 
-
+//author post controller
+Route::get('/author/post', [AuthorPostController::class, 'index'])->name('author.post');
+Route::get('/author/post/create', [AuthorPostController::class, 'create'])->name('author.post.create');
+Route::post('/author/post/store', [AuthorPostController::class, 'store'])->name('author.post.store');
+Route::get('/author/post/edit/{id}', [AuthorPostController::class, 'edit'])->name('author.post.edit');
+Route::post('/author/post/update/{id}', [AuthorPostController::class, 'update'])->name('author.post.update');
+Route::get('/author/post/delete/{id}', [AuthorPostController::class, 'delete'])->name('author.post.delete');
+Route::get('/author/post/tag/{id}/{id1}', [AuthorPostController::class, 'tag_delete'])->name('author.tag.delete');
 
 
 

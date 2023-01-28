@@ -1,9 +1,9 @@
-@extends('admin.layouts.app')
+@extends('author.layouts.app')
 
 @section('heading', 'Posts List')
 
 @section('button')
-    <a href="{{ route('posts.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
+    <a href="{{ route('author.post.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
 @endsection
 
 @section('main_content')
@@ -22,8 +22,6 @@
                                         <th>Title</th>
                                         <th>Parent Category</th>
                                         <th>Sub Category</th>
-                                        <th>Admin</th>
-                                        {{-- <th>Author</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,15 +35,10 @@
                                             <td>{{ $post->title }}</td>
                                             <td>{{ $post->rSubCategory->rcategory->name}}</td>
                                             <td>{{ $post->rSubCategory->name  }}</td>
-                                            <td>
-                                                @if ($post->admin_id != 0)
-                                                    {{ Auth::guard('admin')->user()->name }}
-                                                @endif
-                                            </td>
 
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('posts.delete', $post->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');">Delete</a>
+                                                <a href="{{ route('author.post.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('author.post.delete', $post->id) }}" class="btn btn-danger" onClick="return confirm('Are you sure?');">Delete</a>
                                             </td>
                                         </tr>
 

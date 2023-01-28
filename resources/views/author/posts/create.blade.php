@@ -1,15 +1,15 @@
-@extends('admin.layouts.app')
+@extends('author.layouts.app')
 
-@section('heading', 'Create Post')
+@section('heading', 'Post create')
 
 @section('button')
-    <a href="{{ route('posts.index') }}" class="btn btn-primary"><i class="fas fa-eye"></i> Go back</a>
+    <a href="{{ route('author.post') }}" class="btn btn-primary"><i class="fas fa-eye"></i> Go back</a>
 @endsection
 
 @section('main_content')
 
     <div class="section-body">
-        <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('author.post.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -51,7 +51,7 @@
 
                             <div class="form-group mb-3">
                                 <label>Tags *</label>
-                                <input type="text" class="form-control" name="tag_name" placeholder="tag name, tag name" value="">
+                                <input type="text" class="form-control" name="tag_name" placeholder="Separate tags using coma(,)" value="">
                             </div>
 
 
