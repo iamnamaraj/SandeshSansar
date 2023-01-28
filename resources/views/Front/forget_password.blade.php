@@ -6,11 +6,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{ $login->login_title }}</h2>
+                    <h2>Forget password</h2>
                     <nav class="breadcrumb-container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ $login->login_title }}</li>
+                            <li class="breadcrumb-item active" aria-current="page">Forget password</li>
                         </ol>
                     </nav>
                 </div>
@@ -23,8 +23,9 @@
             <div class="row">
                 <div class="col-md-4">
 
-                    <form action="{{ route('author.login-submit') }}" method="post">
+                    <form action="{{ route('author.forget-password.submit') }}" method="post">
                         @csrf
+
 
                         <div class="login-form">
                             <div class="mb-3">
@@ -36,18 +37,10 @@
                                 @enderror
 
                             </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
 
-                                @error('password')
-                                 <div class="text-danger">{{ $message }}</div>
-                                @enderror
-
-                            </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary bg-website">Login</button>
-                                <a href="{{ route('author.forget-password') }}">Forget Password ?</a>
+                                <button type="submit" class="btn btn-primary bg-website">Submit</button>
+                                <a href="{{ route('login') }}">Login</a>
                             </div>
                         </div>
                     </form>

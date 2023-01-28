@@ -88,6 +88,12 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/submit', [LoginController::class, 'login_submit'])->name('author.login-submit');
 Route::get('/logout', [LoginController::class, 'logout'])->name('author.logout');
 
+//password reset
+Route::get('/forget-password', [LoginController::class, 'forget_password'])->name('author.forget-password');
+Route::post('/forget-password/submit', [LoginController::class, 'forget_password_submit'])->name('author.forget-password.submit');
+Route::get('/reset-password/{token}/{email}', [LoginController::class, 'reset_password'])->name('author.reset-password');
+Route::post('/reset-password/submit', [LoginController::class, 'reset_password_submit'])->name('author.reset_password.submit');
+
 
 //author dashboard
 Route::get('/author/dashboard', [AuthorHomeController::class, 'dashboard'])->name('author.dashboard')->middleware('author:author');
